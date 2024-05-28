@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: abbtech-book-operation-ms
+server:
+  servlet:
+    context-path: /abbtech-book-operation-ms
+  port: 8087
