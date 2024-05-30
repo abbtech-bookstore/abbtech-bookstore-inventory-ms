@@ -1,0 +1,34 @@
+databaseChangeLog:
+  - logicalFilePath: 20240524-10-create-table-book.yaml
+  - changeSet:
+      id: 20242205-1
+      author: RevanHajiyev
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                  name: id
+                  type: UUID
+              - column:
+                  constraints:
+                    nullable: false
+                  name: title
+                  remarks: title
+                  type: VARCHAR2(100 BYTE)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: author
+                  remarks: book author
+                  type: VARCHAR2(100 BYTE)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: price
+                  remarks: book price
+                  type: NUMBER(19,2)
+            remarks: Book entity
+            tableName: BOOK

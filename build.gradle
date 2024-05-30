@@ -8,7 +8,7 @@ group = 'org.abbtech'
 version = '0.0.1-SNAPSHOT'
 
 java {
-    sourceCompatibility = '21'
+    sourceCompatibility = JavaVersion.VERSION_17
 }
 
 repositories {
@@ -16,22 +16,32 @@ repositories {
 }
 
 ext {
-    set('jUnitVersion', '5.10.2')
-    set('iUnitMockitoVersion', '5.11.0')
-    set('logbackEncoderVersion', "7.3")
+    set('logbackEncoderVersion', '7.3')
+    set('liquibaseCoreVersion', '4.22.0')
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'com.h2database:h2' // Runtime dependency for H2 database
+    implementation 'org.postgresql:postgresql' // Runtime dependency for PostgreSQL
+
+    // Logging dependencies
     implementation "net.logstash.logback:logstash-logback-encoder:${logbackEncoderVersion}"
     implementation 'ch.qos.logback:logback-classic'
 
+    // Liquibase dependency
+    implementation "org.liquibase:liquibase-core:${liquibaseCoreVersion}"
+
+    // Test dependencies
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: "${iUnitMockitoVersion}"
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: "${jUnitVersion}"
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: "${jUnitVersion}"
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: "${jUnitVersion}"
+    testImplementation 'org.mockito:mockito-junit-jupiter'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params'
+
+    // Lombok dependency
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 }

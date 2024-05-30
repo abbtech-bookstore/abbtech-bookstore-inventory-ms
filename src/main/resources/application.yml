@@ -1,7 +1,20 @@
+server:
+  port: ${SERVER_PORT:8082}
+  servlet:
+    context-path: /abbtech-bookstore-inventory-ms
 spring:
   application:
-    name: abbtech-book-operation-ms
-server:
-  servlet:
-    context-path: /abbtech-book-operation-ms
-  port: 8087
+    name: abbtech-bookstore-inventory-ms
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://127.0.0.1:6432/abb_tech
+    username: psg_user
+    password: pass
+    hikari:
+      schema: book_inventory
+  liquibase:
+    enabled: ${LIQUIBASE_ENABLE:true}
+    change-log: classpath:db/changelog/db.changelog.yml
+    default-schema: book_inventory
+  main:
+    banner-mode: off
